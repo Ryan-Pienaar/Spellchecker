@@ -11,7 +11,7 @@ public class ResizingArrayDictionary extends ArrayTypeDictionary implements Dict
 
     private String[] dictionary;
     private ArrayList<String> buffer = new ArrayList<String>();
-    private int size = 5;
+    private int size = 0;
     private int max = 5;
 
     public ResizingArrayDictionary() {
@@ -85,6 +85,7 @@ public class ResizingArrayDictionary extends ArrayTypeDictionary implements Dict
      * @param word The word to be checked.
      * @return Returns true or false based on if the word is present in the dictionary.
      */
+    @Override
     public boolean isWord(String word) {
         for (int i = 0; i < size; i++)
         {
@@ -102,6 +103,7 @@ public class ResizingArrayDictionary extends ArrayTypeDictionary implements Dict
     /** Gives you all the words present in the dictionary.
      * @return Returns an array list containing all the words in the dictionary.
      */
+    @Override
     public void addNewWord(String word) {
         if(!this.isWord(word))
         {
@@ -130,6 +132,7 @@ public class ResizingArrayDictionary extends ArrayTypeDictionary implements Dict
     /** Removes a word from the dictionary.
      * @param word The word to be removed.
      */
+    @Override
     public void removeWord(String word) {
 
         for (int i = 0; i < size; i++)
@@ -169,6 +172,7 @@ public class ResizingArrayDictionary extends ArrayTypeDictionary implements Dict
     /** Gives you all the words present in the dictionary.
      * @return Returns an array list containing all the words in the dictionary.
      */
+    @Override
     public ArrayList<String> getDictionaryWords() {
         ArrayList<String> dr = new ArrayList<String>();
 
@@ -185,6 +189,7 @@ public class ResizingArrayDictionary extends ArrayTypeDictionary implements Dict
     /** Gives the amount of words present in the dictionary.
      * @return Returns an int value of the number of words in the dictionary.
      */
+    @Override
     public int getNumberOfElements() {
         int count = 0;
         for (int i = 0; i < size; i++)
@@ -201,9 +206,10 @@ public class ResizingArrayDictionary extends ArrayTypeDictionary implements Dict
         return 0;
     }
 
+    //This method is only for corncob testing | Remove before handing in project.
     public int size()
     {
-        return size;
+        return dictionary.length;
     }
 
 }

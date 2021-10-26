@@ -32,17 +32,11 @@ public class ArrayDictionary extends ArrayTypeDictionary implements DictionaryIn
         {
             e.printStackTrace();
         }
-        //int pos = 0;
-        while (scanner.hasNextLine())
+        while (scanner.hasNextLine() && size < 30001)
         {
-            //dictionary[pos] = scanner.nextLine();
-            //pos++;
+
             this.addNewWord(scanner.nextLine());
             size++;
-            if (size == 30000)
-            {
-                break;
-            }
         }
     }
 
@@ -90,9 +84,13 @@ public class ArrayDictionary extends ArrayTypeDictionary implements DictionaryIn
         int count = 0;
         for (int i = 0; i < size; i++)
         {
-            if (dictionary[i].equals(word))
+            if (dictionary[i] != null)
             {
-                dictionary[i] = null;
+                if (dictionary[i].equals(word))
+                {
+                    dictionary[i] = null;
+                    size--;
+                }
             }
         }
     }
