@@ -2,7 +2,6 @@ package DictionaryTypes;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
-
 import DictionaryTypes.TrieStructureComponents.Edge;
 import DictionaryTypes.TrieStructureComponents.State;
 import DictionaryTypes.abstractClasses.Dictionary;
@@ -34,7 +33,6 @@ public class TrieDictionary extends Dictionary implements DictionaryInterface {
                 queue.add(current.getOutgoingEdges().get(i).getChildState());
                 sortList.add(current.getOutgoingEdges().get(i).getEdgeChar());
             }
-            Collections.sort(sortList);
             for (int i = 0; i < sortList.size(); i++)
             {
                 bfs.add(sortList.get(0));
@@ -48,23 +46,28 @@ public class TrieDictionary extends Dictionary implements DictionaryInterface {
     public ArrayList<Character> DFS()
     {
         ArrayList<Character> dfs = new ArrayList<>();
-        Stack<State> queue = new Stack<>();
-        ArrayList<Character> sortList = new ArrayList<>();
-        queue.add(startState);
-        while(queue.size() > 0)
+        ArrayList<Edge> queue = new ArrayList<Edge>();
+        for (int i = 0; i < startState.getNumbOfOutgoingEdges(); i++)
         {
-            current = queue.pop();
-            int elements = current.getNumbOfOutgoingEdges();
-            for (int j = 0; j < elements; j++)
+            queue.add(startState.getOutgoingEdges().get(i));
+            while (!queue.isEmpty())
             {
-                queue.add(current.getOutgoingEdges().get(j).getChildState());
-                sortList.add(current.getOutgoingEdges().get(j).getEdgeChar());
-            }
-            Collections.sort(sortList);
-            for (int k = 0; k < sortList.size(); k++)
-            {
-                dfs.add(sortList.get(0));
-                sortList.remove(0);
+                Edge element = queue.get(0);
+                queue.remove(0);
+                if (!element.visited)
+                {
+                    dfs.add(element.getEdgeChar());
+                    element.visited = true;
+                }
+                List<Edge> children = element.getChildState().getOutgoingEdges();
+                for (int j = 0; j < children.size(); j++)
+                {
+                    Edge n = children.get(j);
+                    if (n != null && !n.visited)
+                    {
+                        queue.add(n);
+                    }
+                }
             }
         }
         return dfs;

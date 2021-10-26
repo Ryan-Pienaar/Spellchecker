@@ -1,14 +1,18 @@
 import DictionaryTypes.*;
-
-import static org.junit.Assert.*;
-
+import static org.junit.jupiter.api.Assertions.*;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.io.*;
 import java.nio.channels.*;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
-
+/**
+ * Just some test cases for a spellchecker
+ *
+ * @version 2.1
+ * @author Noshy
+ */
 public class CorncobTest {
 
     static final int UNIQUE_WORDS = 58108;
@@ -16,7 +20,7 @@ public class CorncobTest {
     static final int LINES = 60000;
 
     static DictionaryInterface dict;
-    static final String TEST_FILE_URL = "https://gist.githubusercontent.com/NotNoshy/1a464ce1d54a5fffb2a322321b26747b/raw/ac648c9123ed87768cd5d268cde9d45d6a2a8523/corncobInput.txt";
+    static final String TEST_FILE_URL = "https://gist.githubusercontent.com/NotNoshy/1a464ce1d54a5fffb2a322321b26747b/raw/58ce8e1455234b7b62d58cfaab83f453c551cd0b/corncobInput.txt";
     static final String TEST_FILE = "corncobInput.txt";
     static final String EMPTY_TEST_FILE = "empty.txt";
 
@@ -62,6 +66,7 @@ public class CorncobTest {
     }
     // #endregion
 
+    // General tests
     // #region Test 1: test create dictionary and check all words added
     @Test
     public void trieTest1() {
@@ -288,8 +293,8 @@ public class CorncobTest {
     @Test
     public void trieTest6() {
         dict = new TrieDictionary();
-        String[] words = { "shrimp", "shrimp", "shrimps", "chimp", "crimp", "ship", "shriek", "shrift", "shrill", "shrine",
-                "shrink" };
+        String[] words = { "shrimp", "shrimp", "shrimps", "chimp", "crimp", "ship", "shriek", "shrift", "shrill",
+                "shrine", "shrink" };
 
         for (String word : words) {
             dict.addNewWord(word);
@@ -301,8 +306,8 @@ public class CorncobTest {
     @Test
     public void arrTest6() {
         dict = new ArrayDictionary();
-        String[] words = { "shrimp", "shrimp", "shrimps", "chimp", "crimp", "ship", "shriek", "shrift", "shrill", "shrine",
-                "shrink" };
+        String[] words = { "shrimp", "shrimp", "shrimps", "chimp", "crimp", "ship", "shriek", "shrift", "shrill",
+                "shrine", "shrink" };
 
         for (String word : words) {
             dict.addNewWord(word);
@@ -314,8 +319,8 @@ public class CorncobTest {
     @Test
     public void reArrTest6() {
         dict = new ResizingArrayDictionary();
-        String[] words = { "shrimp", "shrimp", "shrimps", "chimp", "crimp", "ship", "shriek", "shrift", "shrill", "shrine",
-                "shrink" };
+        String[] words = { "shrimp", "shrimp", "shrimps", "chimp", "crimp", "ship", "shriek", "shrift", "shrill",
+                "shrine", "shrink" };
 
         for (String word : words) {
             dict.addNewWord(word);
@@ -363,6 +368,26 @@ public class CorncobTest {
     }
     // #endregion
 
+    // ResizingArray tests
+    // #region ResizingArrayInit: test that the resizing array initialises to size 5
+    @Test
+    public void resizingArrayInit() {
+        dict = new ResizingArrayDictionary();
+        assertEquals(5, getResizingArrLen((ResizingArrayDictionary) dict));
+    }
+    // #endregion
+
+    // #region resizingArrayInitEmpty: test that the resizing array initialises to
+    // size 5 after reading empty file
+    @Test
+    public void resizingArrayInitEmpty() {
+        dict = new ResizingArrayDictionary();
+        dict.CreateDictionary(EMPTY_TEST_FILE);
+        assertEquals(5, getResizingArrLen((ResizingArrayDictionary) dict));
+    }
+    // #endregion
+
+    // Trie tests
     // #region TireTestDFS: dfs using given example
     // (https://learn.sun.ac.za/mod/page/view.php?id=1574200)
     @Test
@@ -400,6 +425,58 @@ public class CorncobTest {
         output = list.toArray(output);
 
         assertArrayEquals(expected, output);
+    }
+    // #endregion
+
+    // Sorting tests
+    // #region insertionSort
+    @Test
+    public void insertionSort() {
+        for (int i = 0; i < 12; i++) {
+            String[] words = { "sorrowfully", "photovoltaic", "assuaged", "rayon", "unrelieved", "effort", "except",
+                    "jumpstart", "magnetometers", "polygons" };
+
+            String[] expected = Arrays.copyOf(words, words.length);
+            Arrays.sort(expected, 0, Math.min(i + 1, expected.length));
+
+            new ResizingArrayDictionary().insertionSort(words, i);
+            assertArrayEquals(expected, words);
+        }
+    }
+
+    // #endregion
+
+    // #region mergeSort
+    @Test
+    public void mergeSort() {
+        for (int i = 0; i < 12; i++) {
+            String[] words = { "sorrowfully", "photovoltaic", "assuaged", "rayon", "unrelieved", "effort", "except",
+                    "jumpstart", "magnetometers", "polygons" };
+
+            String[] expected = Arrays.copyOf(words, words.length);
+            Arrays.sort(expected, 0, Math.min(i + 1, expected.length));
+
+            new ResizingArrayDictionary().mergeSort(words, i);
+            assertArrayEquals(expected, words);
+        }
+    }
+    // #endregion
+
+    // #region hybridSort
+    @Test
+    public void hybridSort() {
+        for (int i = 0; i < 12; i++) {
+            for (int j = 1; j < 11; j++) {
+                String[] words = { "sorrowfully", "photovoltaic", "assuaged", "rayon", "unrelieved", "effort", "except",
+                        "jumpstart", "magnetometers", "polygons" };
+
+                String[] expected = Arrays.copyOf(words, words.length);
+                Arrays.sort(expected, 0, Math.min(i + 1, expected.length));
+
+                new ResizingArrayDictionary().hybridSort(words, j, i);
+                assertArrayEquals(expected, words);
+            }
+        }
     }
     // #endregion
 

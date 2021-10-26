@@ -4,6 +4,7 @@ public class Edge {
     private char c;
     private State currentState;
     private State childState;
+    public boolean visited = false;
 
     /** Creates a Edge which points to the next state.
      * @param ch The character that the Edge contains.
