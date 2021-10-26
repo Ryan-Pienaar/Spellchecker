@@ -27,25 +27,22 @@ public class Testing
 
     public static void main(String[] args)
     {
-        /*ArrayDictionary array = new ArrayDictionary();
-        array.CreateDictionary("src/Input/testing.txt");
-        //String[] arr = {"zz", "bb", "cb", "ba", "za", "zb", "cz", "ab", "aa"};
-        List<String> words = array.getDictionaryWords();
-        String[] wordsArray = new String[words.size()];
-        for (int i = 0; i < words.size(); i++)
+        //ArrayDictionary array = new ArrayDictionary();
+        //array.CreateDictionary("src/Input/testing.txt");
+        String[] arr = { "sorrowfully", "photovoltaic", "assuaged", "rayon", "unrelieved", "effort", "except",
+                "jumpstart", "magnetometers", "polygons" };
+        //List<String> words = array.getDictionaryWords();
+        //String[] wordsArray = new String[words.size()];
+        //for (int i = 0; i < words.size(); i++)
+        //{
+        //    wordsArray[i] = words.get(i);
+        //}
+
+        new ResizingArrayDictionary().insertionSort(arr, 10);
+
+        for (int i = 0; i < arr.length; i++)
         {
-            wordsArray[i] = words.get(i);
+            System.out.println(arr[i]);
         }
-
-        array.insertionSort(wordsArray, 9);
-
-        for (int i = 0; i < wordsArray.length; i++)
-        {
-            System.out.println(wordsArray[i]);
-        }*/
-
-        ResizingArrayDictionary dictionary = new ResizingArrayDictionary();
-        dictionary.addNewWord("apple");
-        System.out.println(dictionary.isWord("apple"));
     }
 }
