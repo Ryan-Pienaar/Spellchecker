@@ -32,11 +32,9 @@ public class ArrayDictionary extends ArrayTypeDictionary implements DictionaryIn
         {
             e.printStackTrace();
         }
-        while (scanner.hasNextLine() && size < 30001)
+        while (scanner.hasNextLine() && size < 30000)
         {
-
-            this.addNewWord(scanner.nextLine());
-            size++;
+                this.addNewWord(scanner.nextLine());
         }
     }
 
@@ -45,7 +43,7 @@ public class ArrayDictionary extends ArrayTypeDictionary implements DictionaryIn
      */
     @Override
     public boolean isWord(String word) {
-        for (int i = 0; i < size; i++)
+        for (int i = 0; i < 30000; i++)
         {
             if (dictionary[i] != null)
             {
@@ -100,12 +98,13 @@ public class ArrayDictionary extends ArrayTypeDictionary implements DictionaryIn
      */
     @Override
     public ArrayList<String> getDictionaryWords() {
+        int count = 0;
         ArrayList<String> dr = new ArrayList<String>();
-        for (int i = 0; i < size; i++)
+        for (int i = 0; i < 30000; i++)
         {
             if (dictionary[i] != null)
             {
-                dr.add(dictionary[i]);
+            dr.add(dictionary[i]);
             }
         }
         return dr;
@@ -116,18 +115,6 @@ public class ArrayDictionary extends ArrayTypeDictionary implements DictionaryIn
      */
     @Override
     public int getNumberOfElements() {
-        int count = 0;
-        for (int i = 0; i < size; i++)
-        {
-            if (dictionary[i] != null)
-            {
-                count++;
-            }
-        }
-        if (count > 0)
-        {
-            return count;
-        }
-        return 0;
+        return this.getDictionaryWords().size();
     }
 }
