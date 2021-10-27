@@ -212,4 +212,10 @@ public class ResizingArrayDictionary extends ArrayTypeDictionary implements Dict
         return dictionary.length;
     }
 
+    //For Unit Testing purposes.
+    public String[] getArray()
+    {
+        return dictionary;
+    }
+
 }

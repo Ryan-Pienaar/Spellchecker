@@ -117,4 +117,10 @@ public class ArrayDictionary extends ArrayTypeDictionary implements DictionaryIn
     public int getNumberOfElements() {
         return this.getDictionaryWords().size();
     }
+
+    //For Unit Testing purposes.
+    public String[] getArray()
+    {
+        return dictionary;
+    }
 }
