@@ -1,8 +1,12 @@
 package DictionaryTypes.abstractClasses;
 
-public abstract class ArrayTypeDictionary extends Dictionary {
+import DictionaryTypes.ArrayDictionary;
+import java.util.ArrayList;
+import java.util.Arrays;
 
-    /* ARRAY SPECIFIC METHODS handin2*/
+public abstract class ArrayTypeDictionary extends Dictionary
+{
+
     public void insertionSort(String[] arr, int finalIndexForSort)
     {
         int index = 0;
@@ -32,7 +36,7 @@ public abstract class ArrayTypeDictionary extends Dictionary {
     public void mergeSort(String[] arr, int finalIndexForSort)
     {
         int index = finalIndexForSort;
-        if ( finalIndexForSort >= arr.length)
+        if (finalIndexForSort >= arr.length)
         {
             index = arr.length - 1;
         }
@@ -41,7 +45,8 @@ public abstract class ArrayTypeDictionary extends Dictionary {
 
     private void mergeSortUtil(String[] arr, int start, int end)
     {
-        if (start == end) {
+        if (start == end)
+        {
             return;
         }
         int mid = (start + end) / 2;
@@ -96,9 +101,11 @@ public abstract class ArrayTypeDictionary extends Dictionary {
         }
     }
 
+    public void hybridSort(String[] arr, int size, int finalIndexForSort)
+    {
+        if (finalIndexForSort <= finalIndexForSort)
+        {
 
-
-    public void hybridSort(String[] arr, int size, int finalIndexForSort) {
-        //todo
+        }
     }
 }

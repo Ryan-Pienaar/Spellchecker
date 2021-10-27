@@ -466,7 +466,7 @@ public class CorncobTest {
     @Test
     public void hybridSort() {
         for (int i = 0; i < 12; i++) {
-            for (int j = 1; j < 11; j++) {
+            for (int j = 2; j < 11; j++) {
                 String[] words = { "sorrowfully", "photovoltaic", "assuaged", "rayon", "unrelieved", "effort", "except",
                         "jumpstart", "magnetometers", "polygons" };
 
