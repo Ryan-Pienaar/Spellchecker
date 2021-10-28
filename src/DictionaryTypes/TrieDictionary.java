@@ -31,12 +31,7 @@ public class TrieDictionary extends Dictionary implements DictionaryInterface {
             for (int i = 0; i < current.getNumbOfOutgoingEdges(); i++)
             {
                 queue.add(current.getOutgoingEdges().get(i).getChildState());
-                sortList.add(current.getOutgoingEdges().get(i).getEdgeChar());
-            }
-            for (int i = 0; i < sortList.size(); i++)
-            {
-                bfs.add(sortList.get(0));
-                sortList.remove(0);
+                bfs.add(current.getOutgoingEdges().get(i).getEdgeChar());
             }
         }
         current = startState;
@@ -45,8 +40,8 @@ public class TrieDictionary extends Dictionary implements DictionaryInterface {
 
     public ArrayList<Character> DFS()
     {
-        ArrayList<Character> dfs = new ArrayList<>();
-        ArrayList<Edge> queue = new ArrayList<Edge>();
+        /*ArrayList<Character> dfs = new ArrayList<>();
+        Stack<Edge> queue = new Stack<Edge>();
         for (int i = 0; i < startState.getNumbOfOutgoingEdges(); i++)
         {
             queue.add(startState.getOutgoingEdges().get(i));
@@ -67,6 +62,42 @@ public class TrieDictionary extends Dictionary implements DictionaryInterface {
                     {
                         queue.add(n);
                     }
+                }
+            }
+        }*/
+        ArrayList<Character> dfs = new ArrayList<>();
+        Stack<State> queue = new Stack<>();
+        current = startState;
+        // push the source node into the stack
+        queue.push(current);
+
+        // loop till stack is empty
+        while (!queue.empty())
+        {
+            // Pop a vertex from the stack
+            current = queue.pop();
+
+            // if the vertex is already discovered yet, ignore it
+            if (current.visited) {
+                continue;
+            }
+
+            // we will reach here if the popped vertex `v`
+            // is not discovered yet; print it and process
+            // its undiscovered adjacent nodes into the stack
+            current.visit();
+            if (!current.stateWord().equals(""))
+            {
+                dfs.add(current.stateWord().charAt(current.stateWord().length() - 1));
+            }
+
+            // do for every edge `v —> u`
+            ArrayList<Edge> edges = current.getOutgoingEdges();
+            for (int i = edges.size() - 1; i >= 0; i--)
+            {
+                State childState = edges.get(i).getChildState();
+                if (!childState.visited) {
+                    queue.push(childState);
                 }
             }
         }
