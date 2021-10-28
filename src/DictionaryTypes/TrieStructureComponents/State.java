@@ -1,12 +1,15 @@
 package DictionaryTypes.TrieStructureComponents;
 
+import javax.imageio.metadata.IIOMetadataFormatImpl;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class State {
     private String word;
     private boolean isEnd;
     private int index;
     private State currentState = this;
+    public boolean visited = false;
 
     private ArrayList<Edge> outgoingEdges = new ArrayList<>();
 
@@ -44,6 +47,10 @@ public class State {
      */
     public ArrayList<Edge> getOutgoingEdges()
     {
+        if (getNumbOfOutgoingEdges() > 1)
+        {
+            sortEdgeList();
+        }
         return outgoingEdges;
     }
 
@@ -80,7 +87,8 @@ public class State {
      * @param s The state from which the Edge is pointing from.
      * @param ch The character of the Edge that needs to removed.
      */
-    public void removeLink(State s, Character ch) {
+    public void removeLink(State s, Character ch)
+    {
         outgoingEdges.remove(0);
     }
 
@@ -93,4 +101,48 @@ public class State {
         Edge currentEdge = new Edge(ch, s);
         outgoingEdges.add(currentEdge);
     }
+    
+    private void sortEdgeList()
+    {
+        ArrayList<Character> sortList = new ArrayList<>();
+        for (int i = 0; i < getNumbOfOutgoingEdges(); i++)
+        {
+            sortList.add(getOutgoingEdgesChar().get(i));
+        }
+
+        ArrayList<Edge> edgeBuffer = new ArrayList<>();
+        for (int i = 0; i < getNumbOfOutgoingEdges(); i++)
+        {
+            edgeBuffer.add(sortEdgeListUtil().get(i));
+        }
+
+        Collections.sort(sortList);
+
+        for (int i = 0; i < sortList.size(); i++)
+        {
+            outgoingEdges.remove(0);
+        }
+
+        for (int i = 0; i < sortList.size(); i++)
+        {
+            for (int j = 0; j < sortList.size(); j++)
+            {
+                if (edgeBuffer.get(j).getEdgeChar().equals(sortList.get(i)))
+                {
+                    outgoingEdges.add(edgeBuffer.get(j));
+                }
+            }
+        }
+    }
+
+    private ArrayList<Edge> sortEdgeListUtil()
+    {
+        return outgoingEdges;
+    }
+
+    public void visit()
+    {
+        visited = true;
+    }
+
 }
