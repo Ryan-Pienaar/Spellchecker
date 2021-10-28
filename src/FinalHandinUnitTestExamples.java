@@ -140,7 +140,7 @@ public class FinalHandinUnitTestExamples {
         long start = 0;
         long finish = 0;
         start = System.currentTimeMillis();
-        dictionaryDataStructure.insertionSort(dictionaryDataStructure.getDictionaryWords().toArray(new String[0]), 20000);
+        dictionaryDataStructure.insertionSort(dictionaryDataStructure.getDictionaryWords().toArray(new String[0]), 19999);
         finish = System.currentTimeMillis();
         long insertionTimeElapsed = finish - start;
         System.out.println("Time elapsed Insertion unsorted: " + insertionTimeElapsed);
@@ -150,7 +150,7 @@ public class FinalHandinUnitTestExamples {
         start = 0;
         finish = 0;
         start = System.currentTimeMillis();
-        dictionaryDataStructure.insertionSort(dictionaryDataStructure.getDictionaryWords().toArray(new String[0]), 20000);
+        dictionaryDataStructure.insertionSort(dictionaryDataStructure.getDictionaryWords().toArray(new String[0]), 19999);
         finish = System.currentTimeMillis();
         long insertionTimeElapsedSorted = finish - start;
         System.out.println("Time elapsed Insertion sorted: " + insertionTimeElapsedSorted);
