@@ -30,4 +30,18 @@ public class Edge {
     {
         return c;
     }
+
+
+    /*public int compareTo(Edge x)
+    {
+        if (x.getEdgeChar().compareTo(this.getEdgeChar()) > 0)
+        {
+            return 1;
+        }
+        else if (x.getEdgeChar().compareTo(this.getEdgeChar()) < 0)
+        {
+            return -1;
+        }
+        return 0;
+    }*/
 }
