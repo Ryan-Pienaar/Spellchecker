@@ -1,5 +1,4 @@
 package DictionaryTypes.abstractClasses;
-
 import DictionaryTypes.ArrayDictionary;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -7,6 +6,11 @@ import java.util.Arrays;
 public abstract class ArrayTypeDictionary extends Dictionary
 {
 
+    /**
+     * Uses the insertion sorting method to sort words in an array type dictionary alphabetically.
+     * @param arr Input array of the dictionary to be sorted.
+     * @param finalIndexForSort Index value where insertion sort should be used up until.
+     */
     public void insertionSort(String[] arr, int finalIndexForSort)
     {
         int index = 0;
@@ -33,6 +37,12 @@ public abstract class ArrayTypeDictionary extends Dictionary
         }
     }
 
+    /**
+     * Uses the merge sorting method to sort an array type dictionary by splitting the array
+     * into smaller segments and then sorting the words alphabetically
+     * @param arr Input array of the dictionary to be sorted.
+     * @param finalIndexForSort Index value where insertion sort should be used up until.
+     */
     public void mergeSort(String[] arr, int finalIndexForSort)
     {
         int index = finalIndexForSort;
@@ -43,6 +53,12 @@ public abstract class ArrayTypeDictionary extends Dictionary
         mergeSortUtil(arr, 0, index);
     }
 
+    /**
+     * This is a utility method for the mergeSort method.
+     * @param arr String array input.
+     * @param start Start index of the array to be sorted.
+     * @param end End index of the array to be sorted.
+     */
     private void mergeSortUtil(String[] arr, int start, int end)
     {
         if (start == end)
@@ -56,7 +72,14 @@ public abstract class ArrayTypeDictionary extends Dictionary
         merge(arr, start, mid, end);
     }
 
-    private void merge(String[] a, int from, int mid, int to)
+    /**
+     * Merges all the sub arrays into the final sorted array.
+     * @param arr String array input.
+     * @param from Start index value of the array to be merged.
+     * @param mid Midpoint index value of the array to be sorted.
+     * @param to End index value of the array to merged.
+     */
+    private void merge(String[] arr, int from, int mid, int to)
     {
         int range = to - from + 1;       // size of the range to be merged
         String[] tempArr = new String[range];   // merge both halves into a temporary array tempArr
@@ -67,14 +90,14 @@ public abstract class ArrayTypeDictionary extends Dictionary
         //as long as neither nextElementR1 nor nextElementR2 past the end, move the smaller into tempArr
         while (nextElementR1 <= mid && nextElementR2 <= to)
         {
-            if (a[nextElementR1].compareTo(a[nextElementR2]) < 0)
+            if (arr[nextElementR1].compareTo(arr[nextElementR2]) < 0)
             {
-                tempArr[next] = a[nextElementR1];
+                tempArr[next] = arr[nextElementR1];
                 nextElementR1++;
             }
             else
             {
-                tempArr[next] = a[nextElementR2];
+                tempArr[next] = arr[nextElementR2];
                 nextElementR2++;
             }
             next++;
@@ -83,29 +106,40 @@ public abstract class ArrayTypeDictionary extends Dictionary
         // copy any remaining entries of the first half
         while (nextElementR1 <= mid)
         {
-            tempArr[next] = a[nextElementR1];
+            tempArr[next] = arr[nextElementR1];
             nextElementR1++;
             next++;
         }
         // copy any remaining entries of the second half
         while (nextElementR2 <= to)
         {
-            tempArr[next] = a[nextElementR2];
+            tempArr[next] = arr[nextElementR2];
             nextElementR2++;
             next++;
         }
         // copy back from the temporary array
         for (next = 0; next < range; next++)
         {
-            a[from + next] = tempArr[next];
+            arr[from + next] = tempArr[next];
         }
     }
 
     public void hybridSort(String[] arr, int size, int finalIndexForSort)
     {
-        if (finalIndexForSort <= finalIndexForSort)
+        int index = finalIndexForSort;
+        if (finalIndexForSort >= arr.length)
         {
-
+            index = arr.length - 1;
         }
+
+        if (size <= arr.length)
+        {
+            mergeSort(arr, index);
+        }
+        else if (size > arr.length)
+        {
+            insertionSort(arr, arr.length);
+        }
+
     }
 }
