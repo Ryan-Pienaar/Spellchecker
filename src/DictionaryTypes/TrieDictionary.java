@@ -19,6 +19,10 @@ public class TrieDictionary extends Dictionary implements DictionaryInterface {
         index++;
     }
 
+    /**
+     * Uses the Breadth First Search method in alphabetical order to find all the characters in the trie.
+     * @return Returns a character array list containing all the characters found.
+     */
     public ArrayList<Character> BFS()
     {
         ArrayList<Character> bfs = new ArrayList<>();
@@ -38,60 +42,32 @@ public class TrieDictionary extends Dictionary implements DictionaryInterface {
         return bfs;
     }
 
+    /**
+     * Uses the Depth First Search method in alphabetical order to find all the characters in the trie.
+     * @return Returns a character array list containing all the characters found.
+     */
     public ArrayList<Character> DFS()
     {
-        /*ArrayList<Character> dfs = new ArrayList<>();
-        Stack<Edge> queue = new Stack<Edge>();
-        for (int i = 0; i < startState.getNumbOfOutgoingEdges(); i++)
-        {
-            queue.add(startState.getOutgoingEdges().get(i));
-            while (!queue.isEmpty())
-            {
-                Edge element = queue.get(0);
-                queue.remove(0);
-                if (!element.visited)
-                {
-                    dfs.add(element.getEdgeChar());
-                    element.visited = true;
-                }
-                List<Edge> children = element.getChildState().getOutgoingEdges();
-                for (int j = 0; j < children.size(); j++)
-                {
-                    Edge n = children.get(j);
-                    if (n != null && !n.visited)
-                    {
-                        queue.add(n);
-                    }
-                }
-            }
-        }*/
         ArrayList<Character> dfs = new ArrayList<>();
         Stack<State> queue = new Stack<>();
         current = startState;
-        // push the source node into the stack
+
         queue.push(current);
 
-        // loop till stack is empty
         while (!queue.empty())
         {
-            // Pop a vertex from the stack
             current = queue.pop();
 
-            // if the vertex is already discovered yet, ignore it
             if (current.visited) {
                 continue;
             }
 
-            // we will reach here if the popped vertex `v`
-            // is not discovered yet; print it and process
-            // its undiscovered adjacent nodes into the stack
             current.visit();
             if (!current.stateWord().equals(""))
             {
                 dfs.add(current.stateWord().charAt(current.stateWord().length() - 1));
             }
 
-            // do for every edge `v —> u`
             ArrayList<Edge> edges = current.getOutgoingEdges();
             for (int i = edges.size() - 1; i >= 0; i--)
             {

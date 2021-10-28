@@ -1,11 +1,14 @@
 import DictionaryTypes.*;
-import static org.junit.jupiter.api.Assertions.*;
+
+import static junit.framework.TestCase.*;
+import static org.junit.Assert.assertArrayEquals;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.io.*;
 import java.nio.channels.*;
-import org.junit.jupiter.api.Test;
+
+import org.junit.Test;
 
 /**
  * Just some test cases for a spellchecker

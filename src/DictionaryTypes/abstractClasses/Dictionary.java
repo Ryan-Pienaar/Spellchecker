@@ -15,7 +15,6 @@ public abstract class Dictionary implements DictionaryInterface
      * @param N The amount of top suggestions to be returned.
      * @return Returns a string array containing the top suggestions.
      */
-
     public String[] getTopNSuggestions(ArrayList<String> dictionaryWords, String word, int N) {
         ArrayList<Integer> levDist = new ArrayList<Integer>();
         String[] bestSuggestions;
@@ -56,7 +55,6 @@ public abstract class Dictionary implements DictionaryInterface
      * @param actualWord Actual word.
      * @return Returns an int value representing the Levenshtein distance between the two words.
      */
-
     public int getLevenshteinDistance(String wrongWord, String actualWord) {
         if (wrongWord.isEmpty()) {
             return actualWord.length();

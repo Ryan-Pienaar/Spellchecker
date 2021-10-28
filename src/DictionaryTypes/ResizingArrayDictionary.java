@@ -21,6 +21,7 @@ public class ResizingArrayDictionary extends ArrayTypeDictionary implements Dict
     /** Creates the dictionary.
      * @param filepath Specifies where the text document containing the dictionary words are located.
      */
+    @Override
     public void CreateDictionary(String filepath) {
         File file = new File(filepath);
         Scanner scanner = null;

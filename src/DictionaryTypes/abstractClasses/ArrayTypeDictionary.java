@@ -81,43 +81,41 @@ public abstract class ArrayTypeDictionary extends Dictionary
      */
     private void merge(String[] arr, int from, int mid, int to)
     {
-        int range = to - from + 1;       // size of the range to be merged
-        String[] tempArr = new String[range];   // merge both halves into a temporary array tempArr
-        int nextElementR1 = from;               // next element to consider in the first range
-        int nextElementR2 = mid + 1;            // next element to consider in the second range
-        int next = 0;                   // next open position in b
+        int range = to - from + 1;
+        String[] tempArr = new String[range];
+        int nextElementRange1 = from;
+        int nextElementRange2 = mid + 1;
+        int next = 0;
 
-        //as long as neither nextElementR1 nor nextElementR2 past the end, move the smaller into tempArr
-        while (nextElementR1 <= mid && nextElementR2 <= to)
+        while (nextElementRange1 <= mid && nextElementRange2 <= to)
         {
-            if (arr[nextElementR1].compareTo(arr[nextElementR2]) < 0)
+            if (arr[nextElementRange1].compareTo(arr[nextElementRange2]) < 0)
             {
-                tempArr[next] = arr[nextElementR1];
-                nextElementR1++;
+                tempArr[next] = arr[nextElementRange1];
+                nextElementRange1++;
             }
             else
             {
-                tempArr[next] = arr[nextElementR2];
-                nextElementR2++;
+                tempArr[next] = arr[nextElementRange2];
+                nextElementRange2++;
             }
             next++;
         }
-        // note that only one of the two while loops below is executed
-        // copy any remaining entries of the first half
-        while (nextElementR1 <= mid)
+
+        while (nextElementRange1 <= mid)
         {
-            tempArr[next] = arr[nextElementR1];
-            nextElementR1++;
+            tempArr[next] = arr[nextElementRange1];
+            nextElementRange1++;
             next++;
         }
-        // copy any remaining entries of the second half
-        while (nextElementR2 <= to)
+
+        while (nextElementRange2 <= to)
         {
-            tempArr[next] = arr[nextElementR2];
-            nextElementR2++;
+            tempArr[next] = arr[nextElementRange2];
+            nextElementRange2++;
             next++;
         }
-        // copy back from the temporary array
+
         for (next = 0; next < range; next++)
         {
             arr[from + next] = tempArr[next];

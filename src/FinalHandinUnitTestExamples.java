@@ -8,7 +8,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import org.junit.jupiter.api.Test;
+
+import org.junit.Test;
 
 public class FinalHandinUnitTestExamples {
     
@@ -119,6 +120,7 @@ public class FinalHandinUnitTestExamples {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+
         if (dictionaryDataStructure.getNumberOfElements() != 31) {
             passed = false;
         }
@@ -140,7 +142,7 @@ public class FinalHandinUnitTestExamples {
         long start = 0;
         long finish = 0;
         start = System.currentTimeMillis();
-        dictionaryDataStructure.insertionSort(dictionaryDataStructure.getDictionaryWords().toArray(new String[0]), 19999);
+        dictionaryDataStructure.insertionSort(dictionaryDataStructure.getDictionaryWords().toArray(new String[0]), 20000);
         finish = System.currentTimeMillis();
         long insertionTimeElapsed = finish - start;
         System.out.println("Time elapsed Insertion unsorted: " + insertionTimeElapsed);
@@ -150,7 +152,7 @@ public class FinalHandinUnitTestExamples {
         start = 0;
         finish = 0;
         start = System.currentTimeMillis();
-        dictionaryDataStructure.insertionSort(dictionaryDataStructure.getDictionaryWords().toArray(new String[0]), 19999);
+        dictionaryDataStructure.insertionSort(dictionaryDataStructure.getDictionaryWords().toArray(new String[0]), 20000);
         finish = System.currentTimeMillis();
         long insertionTimeElapsedSorted = finish - start;
         System.out.println("Time elapsed Insertion sorted: " + insertionTimeElapsedSorted);
