@@ -7,7 +7,7 @@ import java.util.Collections;
 public class State {
     private String word;
     private boolean isEnd;
-    private int index;
+    private final int index;
     private State currentState = this;
     public boolean visited = false;
 
@@ -70,6 +70,10 @@ public class State {
         return isEnd;
     }
 
+    /**
+     * Changes the accpet state of the State instance.
+     * @param accept True or false input depending if the current State contains a complete dictionary word.
+     */
     public void changeAccpectState(boolean accept)
     {
         isEnd = accept;
@@ -101,7 +105,10 @@ public class State {
         Edge currentEdge = new Edge(ch, s);
         outgoingEdges.add(currentEdge);
     }
-    
+
+    /**
+     * Sorts the current State's edge list in alphabetical order.
+     */
     private void sortEdgeList()
     {
         ArrayList<Character> sortList = new ArrayList<>();
@@ -135,11 +142,18 @@ public class State {
         }
     }
 
+    /**
+     * Bypasses the getOutgoingEdges method to avoid a stack overflow error.
+     * @return Returns the current State's edge list.
+     */
     private ArrayList<Edge> sortEdgeListUtil()
     {
         return outgoingEdges;
     }
 
+    /**
+     * Method is called in DFS when the state has been visited.
+     */
     public void visit()
     {
         visited = true;

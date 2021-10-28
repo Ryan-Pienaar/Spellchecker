@@ -206,12 +206,6 @@ public class ResizingArrayDictionary extends ArrayTypeDictionary implements Dict
         return 0;
     }
 
-    //This method is only for corncob testing | Remove before handing in project.
-    public int size()
-    {
-        return dictionary.length;
-    }
-
     //For Unit Testing purposes.
     public String[] getArray()
     {

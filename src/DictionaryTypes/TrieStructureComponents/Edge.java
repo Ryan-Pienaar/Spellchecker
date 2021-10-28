@@ -2,9 +2,7 @@ package DictionaryTypes.TrieStructureComponents;
 
 public class Edge {
     private char c;
-    private State currentState;
     private State childState;
-    public boolean visited = false;
 
     /** Creates a Edge which points to the next state.
      * @param ch The character that the Edge contains.
@@ -30,18 +28,4 @@ public class Edge {
     {
         return c;
     }
-
-
-    /*public int compareTo(Edge x)
-    {
-        if (x.getEdgeChar().compareTo(this.getEdgeChar()) > 0)
-        {
-            return 1;
-        }
-        else if (x.getEdgeChar().compareTo(this.getEdgeChar()) < 0)
-        {
-            return -1;
-        }
-        return 0;
-    }*/
 }

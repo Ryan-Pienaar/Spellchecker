@@ -124,6 +124,12 @@ public abstract class ArrayTypeDictionary extends Dictionary
         }
     }
 
+    /**
+     * Uses a combination of mergeSort and insertionSort depending of the size input value.
+     * @param arr The array to be sorted.
+     * @param size Size of the subarrays the array needs to be split into.
+     * @param finalIndexForSort The index value of where the array will be sorted up until.
+     */
     public void hybridSort(String[] arr, int size, int finalIndexForSort)
     {
         int index = finalIndexForSort;
